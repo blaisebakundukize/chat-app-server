@@ -1,0 +1,28 @@
+{
+  "name": "chat-app-server",
+  "version": "1.0.0",
+  "description": "One to one chat app",
+  "main": "./src/server.js",
+  "repository": "https://github.com/blaisebakundukize/chat-app-server.git",
+  "type": "module",
+  "engines": {
+    "node": ">=12.x.x"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test jest --testTimeout=15000 --silent --runInBand --detectOpenHandles --forceExit",
+    "test:watch": "NODE_ENV=test jest --watch",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "runQuery": "node --experimental-modules --es-module-specifier-resolution=node src/utils/runQuery.js"
+  },
+  "author": "Blaise Bakundukize <blaisebakundukize@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^8.5.1"
+  }
+}

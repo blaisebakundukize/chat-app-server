@@ -1,5 +1,9 @@
 import { pool } from "../models/pool";
-import { createUserTable } from "./queries";
+import {
+  createUserTable,
+  createChatRoomTable,
+  createMessageTable,
+} from "./queries";
 
 export const executeQueries = async (queries) =>
   new Promise((resolve) => {
@@ -9,4 +13,5 @@ export const executeQueries = async (queries) =>
     });
   });
 
-export const createTables = () => executeQueries([createUserTable]);
+export const createTables = () =>
+  executeQueries([createUserTable, createChatRoomTable, createMessageTable]);

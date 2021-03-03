@@ -65,7 +65,6 @@ export class UserController {
   async getAuthedUser(req, res) {
     try {
       await decodeToken(req, res);
-      console.log(req.currentUser);
       return res.end(JSON.stringify({ ...req.currentUser }));
     } catch (error) {
       res.statusCode = 500;

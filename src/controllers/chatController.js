@@ -39,8 +39,8 @@ export class ChatController {
       // get posted message and validate it
       const chat = JSON.parse(body);
       const conversation = await chatModel.createMessage(chat);
-      global.io.sockets.in(chat.room).emit("new message", { conversation });
-      return res.end(JSON.stringify({ data: conversation }));
+      global.io.sockets.in(chat.room).emit("message", conversation);
+      return res.end(JSON.stringify(conversation));
     } catch (error) {
       res.statusCode = 500;
       return res.end(

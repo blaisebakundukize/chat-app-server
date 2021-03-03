@@ -53,8 +53,10 @@ export const decodeToken = async (req, res) => {
       const user = await userModel.findById(decoded.userId);
       req.currentUser = user;
     } catch (error) {
-      res.writeHead(401, "content-Type", "Application/json");
-      return res.end(JSON.stringify({ error: "Token is invalid or expired" }));
+      // Custom Error Object is needed
+      throw new Error("Token is Invalid or expired");
+      // res.writeHead(401, "content-Type", "Application/json");
+      // return res.end(JSON.stringify({ error: "Token is invalid or expired" }));
     }
   } else {
     res.writeHead(401, "content-Type", "Application/json");

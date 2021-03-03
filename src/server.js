@@ -23,36 +23,31 @@ const server = http.createServer((req, res) => {
 
   if (url.pathname === "/api/users/register" && req.method === "POST") {
     userController.register(req, res);
-  }
-
-  if (url.pathname === "/api/users/login" && req.method === "POST") {
+  } else if (url.pathname === "/api/users/login" && req.method === "POST") {
     userController.login(req, res);
-  }
-
-  if (url.pathname === "/api/users/me" && req.method === "GET") {
+  } else if (url.pathname === "/api/users/me" && req.method === "GET") {
     console.log(url.pathname);
     userController.getAuthedUser(req, res);
-  }
-
-  if (url.pathname === "/api/recent-chats" && req.method === "GET") {
+  } else if (url.pathname === "/api/recent-chats" && req.method === "GET") {
     chatController.getRecentConversation(req, res);
-  }
-
-  if (
+  } else if (
     url.pathname.match(/\/api\/room\/\w+\/messages/) &&
     req.method === "GET"
   ) {
     const roomId = url.pathname.split("/")[3];
     chatController.getConversationByRoomId(req, res, roomId);
-  }
-
-  if (url.pathname === "/api/new-message" && req.method === "POST") {
+  } else if (url.pathname === "/api/new-message" && req.method === "POST") {
     chatController.postMessage(req, res);
-  }
-
-  if (req.method === "OPTIONS") {
+  } else if (req.method === "OPTIONS") {
     res.statusCode = 200;
     res.end();
+  } else {
+    res.statusCode = 404;
+    return res.end(
+      JSON.stringify({
+        message: "Resource Not Found.",
+      })
+    );
   }
 });
 
@@ -74,9 +69,6 @@ global.io.on("connection", (socket) => {
       socketId: socket.id,
       userId,
     });
-
-    console.log("I am here", userId);
-    socket.emit("see-identify", global.users);
   });
 
   // This should handled inside a router to create a message, just to store it in database

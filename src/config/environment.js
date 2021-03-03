@@ -4,7 +4,7 @@ dotenv.config();
 
 const environment = {
   env: process.env.NODE_ENV || "development",
-  dbURL: process.env.DB_URI,
+  dbURL: process.env.DATABASE_URL,
   secretKey: process.env.SECRET_KEY || "",
   baseURL: process.env.BASE_URL,
 };

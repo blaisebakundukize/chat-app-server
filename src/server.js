@@ -71,12 +71,12 @@ global.io.on("connection", (socket) => {
     });
   });
 
-  // This should handled inside a router to create a message, just to store it in database
-  socket.on("send-message", (message) => {
-    console.log(message);
-    console.log(socket.rooms);
-    global.io.in(message.room).emit("message", message);
-  });
+  // This is handled inside the router to create a message, just to emit event after database update
+  // socket.on("send-message", (message) => {
+  //   console.log(message);
+  //   console.log(socket.rooms);
+  //   global.io.in(message.room).emit("message", message);
+  // });
 
   //subscribe person to chat rooms
   socket.on("subscribe", (rooms) => {

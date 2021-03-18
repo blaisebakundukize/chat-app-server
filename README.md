@@ -1,2 +1,2 @@
 # chat-app-server
-A native NodeJS One to one chat app
+A Vanilla NodeJS One to one chat app
